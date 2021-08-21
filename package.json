@@ -1,0 +1,82 @@
+{
+  "name": "@forge/cli",
+  "version": "1.6.1",
+  "description": "A command line interface for managing Atlassian-hosted apps",
+  "author": "Atlassian",
+  "license": "UNLICENSED",
+  "bin": {
+    "forge": "out/bin/cli.js"
+  },
+  "homepage": "https://developer.atlassian.com/platform/forge",
+  "scripts": {
+    "build": "yarn run clean && yarn run compile",
+    "clean": "rm -rf ./out && rm -f tsconfig.tsbuildinfo",
+    "compile": "tsc -b -v",
+    "dev": "NODE_ENV=development ts-node src/bin/cli.ts",
+    "inspect": "node -r ts-node/register --inspect-brk src/bin/cli.ts",
+    "postbuild": "chmod +x out/bin/*.js && ts-node scripts/configureAutocomplete.ts",
+    "postinstall": "node -e \"process.exitCode = fs.existsSync('./out/bin/postinstall.js')\" || node ./out/bin/postinstall.js"
+  },
+  "dependencies": {
+    "@forge/bundler": "1.0.13",
+    "@forge/cli-shared": "1.4.1",
+    "@forge/lint": "1.4.1",
+    "@forge/manifest": "1.5.1",
+    "@forge/util": "1.0.0",
+    "ajv": "^6.12.5",
+    "archiver": "^5.2.0",
+    "case": "^1.6.2",
+    "cheerio": "^0.22.0",
+    "cli-table3": "^0.5.1",
+    "command-exists": "^1.2.8",
+    "commander": "^7.0.0",
+    "cross-spawn": "^7.0.1",
+    "dayjs": "^1.9.7",
+    "didyoumean": "^1.2.1",
+    "env-paths": "^2.2.0",
+    "fs-extra": "^8.1.0",
+    "hidefile": "^3.0.0",
+    "latest-version": "^5.1.0",
+    "mkdirp": "^1.0.3",
+    "node-fetch": "^2.6.1",
+    "node-machine-id": "^1.1.12",
+    "omelette": "^0.4.15-1",
+    "ora": "^4.0.3",
+    "portfinder": "^1.0.25",
+    "sanitize-filename": "^1.6.3",
+    "semver": "^6.3.0",
+    "tmp": "^0.1.0",
+    "tslib": "^1.11.0",
+    "uuid": "^3.4.0"
+  },
+  "devDependencies": {
+    "@types/archiver": "^5.1.0",
+    "@types/cheerio": "^0.22.21",
+    "@types/command-exists": "^1.2.0",
+    "@types/cross-spawn": "^6.0.1",
+    "@types/didyoumean": "^1.2.0",
+    "@types/fs-extra": "^8.0.1",
+    "@types/hidefile": "^3.0.0",
+    "@types/inquirer": "^6.5.0",
+    "@types/jest": "^26.0.0",
+    "@types/js-yaml": "^3.12.2",
+    "@types/minimatch": "^3.0.3",
+    "@types/mkdirp": "^1.0.0",
+    "@types/node": "^12.12.63",
+    "@types/node-fetch": "^2.5.7",
+    "@types/omelette": "^0.4.1",
+    "@types/semver": "^6.0.1",
+    "@types/tmp": "^0.1.0",
+    "@types/unzipper": "^0.10.1",
+    "@types/uuid": "^3.4.7",
+    "@types/webpack": "4.39.8",
+    "jest-fixtures": "^0.6.0",
+    "memfs": "^2.17.1"
+  },
+  "optionalDependencies": {
+    "keytar": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=8.3"
+  }
+}
